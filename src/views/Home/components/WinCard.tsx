@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from '@pancakeswap/uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from 'bambooswap-frontend-uikit'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 
@@ -29,12 +29,12 @@ const WinCard = () => {
     <StyledFarmStakingCard>
       <NavLink exact activeClassName="active" to="/lottery" id="lottery-pot-cta">
         <CardBody>
-          <Heading color="contrast" scale="lg">
+          <Heading color="contrast" size="lg">
             {t('Lottery')}
           </Heading>
           <CardMidContent color="#7645d9">{t('Coming Soon')}</CardMidContent>
           <Flex justifyContent="space-between">
-            <Heading color="contrast" scale="lg" />
+            <Heading color="contrast" size="lg" />
             <ArrowForwardIcon mt={30} color="primary" />
           </Flex>
         </CardBody>

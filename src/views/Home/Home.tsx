@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout } from '@pancakeswap/uikit'
+import { Heading, Text, BaseLayout } from 'bambooswap-frontend-uikit'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
@@ -23,7 +23,7 @@ const Hero = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     background-image: url('/images/pan-bg2.svg'), url('/images/pan-bg.svg');
     background-position: left center, right center;
-    height: 165px;
+    height: 190px;
     padding-top: 0;
   }
 `
@@ -57,8 +57,8 @@ const Home: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <Heading as="h1" scale="xl" mb="24px" color="secondary">
-          {t('PancakeSwap')}
+        <Heading as="h1" size="xl" mb="24px" >
+          {t('FelicatSwap')}
         </Heading>
         <Text>{t('The #1 AMM and yield farm on Binance Smart Chain.')}</Text>
       </Hero>

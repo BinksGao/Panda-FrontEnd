@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@pancakeswap/uikit'
+import { Card, CardBody, Heading, Text } from 'bambooswap-frontend-uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
@@ -33,7 +33,7 @@ const CakeStats = () => {
   return (
     <StyledCakeStats>
       <CardBody>
-        <Heading scale="lg" mb="24px">
+        <Heading size="lg" mb="24px">
           {t('Cake Stats')}
         </Heading>
         <Row>

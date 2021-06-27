@@ -2079,9 +2079,9 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap/uikit@^0.37.0":
+"bambooswap-frontend-uikit@^0.37.0":
   version "0.37.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/uikit/-/uikit-0.37.0.tgz#eb399e9a6f72444f824432f46e365cd07a763018"
+  resolved "https://registry.yarnpkg.com/bambooswap-frontend-uikit/-/uikit-0.37.0.tgz#eb399e9a6f72444f824432f46e365cd07a763018"
   integrity sha512-F8y7BjGQuxLLAAfsBMsMjRb+wFwHqLk2252JRPQ3tVsrJGCGWaeUCeVpl3nQoeDcj/cAQWquGf+qD79fFvE7+Q==
   dependencies:
     "@popperjs/core" "^2.9.2"
@@ -3902,6 +3902,19 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+bambooswap-frontend-uikit@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/bambooswap-frontend-uikit/-/bambooswap-frontend-uikit-0.0.2.tgz#09f36cdd916b2d7ec7afb6ad608fdee372047d69"
+  integrity sha512-IB0cx+io1C5PkAAEIwB2B6zRzqqJIJq706ec562cWd+zQ1bfB7tnw2GQGHfM6pLe+iLWPGFZDrPst64UORKrdQ==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    "@types/lodash" "^4.14.168"
+    "@types/styled-system" "^5.1.10"
+    lodash "^4.17.20"
+    react-popper "^2.2.5"
+    react-transition-group "^4.4.1"
+    styled-system "^5.1.5"
 
 base-x@^3.0.2, base-x@^3.0.8:
   version "3.0.8"

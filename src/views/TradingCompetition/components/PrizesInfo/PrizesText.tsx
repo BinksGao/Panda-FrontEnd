@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Text, Heading, Image } from '@pancakeswap/uikit'
+import { Flex, Text, Heading, Image } from 'bambooswap-frontend-uikit'
 import { useTranslation } from 'contexts/Localization'
 import FlipperBunny from '../../pngs/flippers.png'
 
@@ -34,7 +34,7 @@ const PrizesText = () => {
         )}
       </Text>
       <ImageWrapper>
-        <Image src={FlipperBunny} alt="Flipper bunny" responsive width={499} height={400} />
+        <Image src={FlipperBunny} alt="Flipper bunny" width={499} height={400} />
       </ImageWrapper>
     </StyledFlex>
   )

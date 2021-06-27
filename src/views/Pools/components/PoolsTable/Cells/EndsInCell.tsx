@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Link, Skeleton, Text, TimerIcon } from '@pancakeswap/uikit'
+import { Flex, Link, Skeleton, Text, TimerIcon } from 'bambooswap-frontend-uikit'
 import { getBscScanBlockCountdownUrl } from 'utils/bscscan'
 import { Pool } from 'state/types'
 import { useBlock } from 'state/hooks'

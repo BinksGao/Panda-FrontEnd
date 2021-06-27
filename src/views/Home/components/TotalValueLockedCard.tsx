@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Skeleton, Text } from '@pancakeswap/uikit'
+import { Card, CardBody, Heading, Skeleton, Text } from 'bambooswap-frontend-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useGetStats } from 'hooks/api'
 
@@ -19,12 +19,12 @@ const TotalValueLockedCard = () => {
   return (
     <StyledTotalValueLockedCard>
       <CardBody>
-        <Heading scale="lg" mb="24px">
+        <Heading size="lg" mb="24px">
           {t('Total Value Locked (TVL)')}
         </Heading>
         {data ? (
           <>
-            <Heading scale="xl">{`$${tvl}`}</Heading>
+            <Heading size="xl">{`$${tvl}`}</Heading>
             <Text color="textSubtle">{t('Across all LPs and Syrup Pools')}</Text>
           </>
         ) : (

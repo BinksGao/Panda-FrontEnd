@@ -13,7 +13,7 @@ import {
   Text,
   CardFooter,
   useModal,
-} from '@pancakeswap/uikit'
+} from 'bambooswap-frontend-uikit'
 import { useProfile } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
 import { Nft } from 'config/constants/types'

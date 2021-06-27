@@ -15,7 +15,7 @@ import {
   Box,
   LinkExternal,
   ModalCloseButton,
-} from '@pancakeswap/uikit'
+} from 'bambooswap-frontend-uikit'
 import { useWeb3React } from '@web3-react/core'
 import { getBscScanTransactionUrl } from 'utils/bscscan'
 import { useAppDispatch } from 'state'
@@ -39,7 +39,7 @@ const Modal = styled(ModalContainer)`
 
 const BunnyDecoration = styled.div`
   position: absolute;
-  top: -116px; // line up bunny at the top of the modal
+  top: -116px;
   left: 0px;
   text-align: center;
   width: 100%;

@@ -1,6 +1,12 @@
+/*
+ * @Description: 
+ * @author: gaohuan
+ * @Date: 2021-06-12 17:49:28
+ * @LastEditTime: 2021-06-24 23:36:09
+ */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Card, CardBody } from '@pancakeswap/uikit'
+import { Card, CardBody } from 'bambooswap-frontend-uikit'
 import getLotteryRoundData from 'utils/getLotteryRoundData'
 import { useTranslation } from 'contexts/Localization'
 import useGetRecentLotteryRoundData from 'hooks/useGetRecentLotteryRoundData'
@@ -17,7 +23,7 @@ const StyledCardBody = styled(CardBody)`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 552px; // height of final card
+  height: 552px;
 `
 
 const PastLotteryRoundViewer = () => {

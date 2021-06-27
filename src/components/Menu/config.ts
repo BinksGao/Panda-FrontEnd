@@ -1,4 +1,4 @@
-import { MenuEntry } from '@pancakeswap/uikit'
+import { MenuEntry } from 'bambooswap-frontend-uikit'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
@@ -13,11 +13,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: t('Exchange'),
-        href: 'http://localhost:3001/#/swap',
+        href: 'https://testnet.pandadao.finance//#/swap',
       },
       {
         label: t('Liquidity'),
-        href: 'http://localhost:3001/#/pool',
+        href: 'https://testnet.pandadao.finance//#/pool',
       }
     ],
   },

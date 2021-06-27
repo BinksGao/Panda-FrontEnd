@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Heading, Image } from '@pancakeswap/uikit'
+import { Flex, Text, Heading, Image } from 'bambooswap-frontend-uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
@@ -44,7 +44,7 @@ const BattleBanner = () => {
   return (
     <Flex flexDirection="column">
       <ImageWrapper>
-        <Image src={AllBunniesImage} alt="all the bunnies" width={1208} height={659} responsive />
+        <Image src={AllBunniesImage} alt="all the bunnies" width={1208} height={659} />
       </ImageWrapper>
       <StyledText mb="16px" color="textSubtle" bold>
         {t('April')} 07—14, 2021
