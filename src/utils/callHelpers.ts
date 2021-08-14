@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
+import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL, NEW_DEFAULT_GAS_LIMIT } from 'config'
 import { ethers } from 'ethers'
 import { Pair, TokenAmount, Token } from 'bambooswap-sdk'
 import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
@@ -8,7 +8,7 @@ import { getAddress, getCakeAddress } from 'utils/addressHelpers'
 import tokens from 'config/constants/tokens'
 import pools from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
-import { multicallv2 } from './multicall'
+import {multicallv2 } from './multicall'
 import { getWeb3WithArchivedNodeProvider } from './web3'
 import { getBalanceAmount } from './formatBalance'
 import { BIG_TEN, BIG_ZERO } from './bigNumber'
@@ -23,7 +23,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
     return masterChefContract.methods
       .enterStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
+      .send({ from: account, gas: NEW_DEFAULT_GAS_LIMIT })
       .on('transactionHash', (tx) => {
         return tx.transactionHash
       })
@@ -63,7 +63,7 @@ export const unstake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
     return masterChefContract.methods
       .leaveStaking(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString())
-      .send({ from: account, gas: DEFAULT_GAS_LIMIT })
+      .send({ from: account, gas: NEW_DEFAULT_GAS_LIMIT })
       .on('transactionHash', (tx) => {
         return tx.transactionHash
       })
@@ -132,7 +132,7 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 }
 
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
-const cakeBnbPid = 251
+const cakeBnbPid = 1
 const cakeBnbFarm = farms.find((farm) => farm.pid === cakeBnbPid)
 
 const CAKE_TOKEN = new Token(chainId, getCakeAddress(), 18)
@@ -177,7 +177,6 @@ export const getUserStakeInCakePool = async (account: string, block?: number) =>
     const archivedWeb3 = getWeb3WithArchivedNodeProvider()
     const masterContract = getMasterchefContract(archivedWeb3)
     const response = await masterContract.methods.userInfo(0, account).call(undefined, block)
-
     return getBalanceAmount(new BigNumber(response.amount))
   } catch (error) {
     console.error('Error getting stake in CAKE pool', error)
@@ -196,7 +195,7 @@ export const getUserStakeInPools = async (account: string, block?: number) => {
       requireSuccess: false,
     }
     const eligiblePools = pools
-      .filter((pool) => pool.sousId !== 0)
+      // .filter((pool) => pool.sousId !== 0)
       .filter((pool) => pool.isFinished === false || pool.isFinished === undefined)
 
     // Get the ending block is eligible pools

@@ -11,7 +11,6 @@ import { StyledCard, StyledCardInner } from '../PoolCard/StyledCard'
 import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import VaultCardActions from './VaultCardActions'
-import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 import RecentCakeProfitRow from './RecentCakeProfitRow'
 
 const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
@@ -53,9 +52,6 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
           <AprRow pool={pool} performanceFee={performanceFeeAsDecimal} />
           <Box mt="24px">
             <RecentCakeProfitRow />
-          </Box>
-          <Box mt="8px">
-            <UnstakingFeeCountdownRow />
           </Box>
           <Flex mt="32px" flexDirection="column">
             {account ? (

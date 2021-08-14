@@ -9,12 +9,13 @@ import { useMasterchef } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
 import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
+import CakeBlockedBalance from './CakeBlockedBalance'
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/bamboo-bg.svg');
   background-repeat: no-repeat;
   background-position: top right;
-  min-height: 376px;
+  min-height: 500px;
 `
 
 const Block = styled.div`
@@ -31,7 +32,7 @@ const Label = styled.div`
 `
 
 const Actions = styled.div`
-  margin-top: 24px;
+  margin-top: 30px;
 `
 
 const FarmedStakingCard = () => {
@@ -64,11 +65,15 @@ const FarmedStakingCard = () => {
         </Heading>
         <CardImage src="/images/bamboo.svg" alt="cake logo" width={64} height={64} />
         <Block>
-          <Label>{t('CAKE to Harvest')}:</Label>
+          <Label>{t('FEL to Harvest')}:</Label>
           <CakeHarvestBalance />
         </Block>
         <Block>
-          <Label>{t('CAKE in Wallet')}:</Label>
+          <Label>{t('FEL to Blocked')}:</Label>
+          <CakeBlockedBalance />
+        </Block>
+        <Block>
+          <Label>{t('FEL in Wallet')}:</Label>
           <CakeWalletBalance />
         </Block>
         <Actions>
@@ -80,7 +85,7 @@ const FarmedStakingCard = () => {
               width="100%"
             >
               {pendingTx
-                ? t('Collecting CAKE')
+                ? t('Collecting FEL')
                 : t('Harvest all (%count%)', {
                     count: balancesWithValue.length,
                   })}

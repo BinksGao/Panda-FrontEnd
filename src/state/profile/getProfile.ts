@@ -23,7 +23,6 @@ const getUsername = async (address: string): Promise<string> => {
     }
 
     const { username = '' } = await response.json()
-
     return username
   } catch (error) {
     return ''

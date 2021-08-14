@@ -1,9 +1,12 @@
+/*
+ * @Description: 
+ * @author: gaohuan
+ * @Date: 2021-06-12 17:49:28
+ * @LastEditTime: 2021-07-29 23:10:57
+ */
 import React from 'react'
 import styled from 'styled-components'
-import { useFarmUser } from 'state/hooks'
-import { useTranslation } from 'contexts/Localization'
 import { Text, Image } from 'bambooswap-frontend-uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
 
 export interface FarmProps {
   label: string
@@ -31,28 +34,12 @@ const Container = styled.div`
   }
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
-  const { stakedBalance } = useFarmUser(pid)
-  const { t } = useTranslation()
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
-
-  const handleRenderFarming = (): JSX.Element => {
-    if (rawStakedBalance) {
-      return (
-        <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
-          {t('Farming')}
-        </Text>
-      )
-    }
-
-    return null
-  }
+const Farm: React.FunctionComponent<FarmProps> = ({ image, label }) => {
 
   return (
     <Container>
       <IconImage src={`/images/farms/${image}.svg`} alt="icon" width={40} height={40} mr="8px" />
       <div>
-        {handleRenderFarming()}
         <Text bold>{label}</Text>
       </div>
     </Container>

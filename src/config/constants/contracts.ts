@@ -1,6 +1,7 @@
 export default {
   masterChef: {
-    97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
+    // 97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
+    97: '0x974138C18920C8b7695dBA52eA6a1a32dFB8Bf17',
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
   },
   sousChef: {
@@ -21,7 +22,7 @@ export default {
   },
   multiCall: {
     56: '0xfF6FD90A470Aaa0c1B8A54681746b07AcdFedc9B',
-    97: '',
+    97: '0x64e2FF64BE67A8966801F4162Ab310D02158197f',
   },
   pancakeProfile: {
     56: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
@@ -67,4 +68,8 @@ export default {
     56: '0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE',
     97: '',
   },
+  feliCatRewardPool: {
+    56: '0x1e563f951046ce6A1CDF5788988B9C4D3A1f0d8a',
+    97: '0x1e563f951046ce6A1CDF5788988B9C4D3A1f0d8a',
+  }
 }

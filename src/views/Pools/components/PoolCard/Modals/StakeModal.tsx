@@ -1,3 +1,4 @@
+//  单币质押提示
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon, Link } from 'bambooswap-frontend-uikit'
@@ -83,7 +84,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
   const handleConfirmClick = async () => {
     setPendingTx(true)
-
     if (isRemovingStake) {
       // unstaking
       try {
@@ -118,7 +118,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
       }
     }
   }
-
+  const apyModalLink =
+  stakingToken.address &&
+  `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
   return (
     <Modal
       title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
@@ -136,7 +138,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-          <Image src={`/images/tokens/${stakingToken.symbol}.png`} width={24} height={24} alt={stakingToken.symbol} />
+          <Image src={`/images/tokens/${stakingToken.symbol}.svg`} width={24} height={24} alt={stakingToken.symbol} />
           <Text ml="4px" bold>
             {stakingToken.symbol}
           </Text>
@@ -187,7 +189,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
       {!isRemovingStake && (
-        <StyledLink external href={BASE_EXCHANGE_URL}>
+        <StyledLink external href={apyModalLink}>
           <Button width="100%" mt="8px" variant="secondary">
             {t('Get %symbol%', { symbol: stakingToken.symbol })}
           </Button>

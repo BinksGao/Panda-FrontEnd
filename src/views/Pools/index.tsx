@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text } from 'bambooswap-frontend-uikit'
+import { Heading, Flex, Text } from 'bambooswap-frontend-uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -19,8 +19,6 @@ import { Pool } from 'state/types'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
-import BountyCard from './components/BountyCard'
-import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
@@ -47,8 +45,8 @@ const ControlStretch = styled(Flex)`
     flex: 1;
   }
 `
-
-const NUMBER_OF_POOLS_VISIBLE = 12
+//  单币质押 能看到的币种数量
+const NUMBER_OF_POOLS_VISIBLE = 2
 
 const Pools: React.FC = () => {
   const location = useLocation()
@@ -186,10 +184,8 @@ const Pools: React.FC = () => {
         latinise(pool.earningToken.symbol.toLowerCase()).includes(lowercaseQuery),
       )
     }
-
     return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   }
-
   const cardLayout = (
     <CardLayout>
       {poolsToShow().map((pool) =>
@@ -219,10 +215,10 @@ const Pools: React.FC = () => {
               {t('High APR, low risk.')}
             </Heading>
           </Flex>
-          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
+          {/* <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
             <HelpButton />
             <BountyCard />
-          </Flex>
+          </Flex> */}
         </Flex>
       </PageHeader>
       <Page>
@@ -280,14 +276,14 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
-        <Image
+        {/* <Image
           mx="auto"
           mt="12px"
           src="/images/3d-syrup-bunnies.png"
           alt="Pancake illustration"
           width={192}
           height={184.5}
-        />
+        /> */}
       </Page>
     </>
   )

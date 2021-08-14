@@ -21,7 +21,6 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { sousId, stakingToken, totalStaked, isAutoVault } = pool
   const { totalCakeInVault } = useCakeVault()
-
   const isManualCakePool = sousId === 0
 
   const totalStakedBalance = useMemo(() => {
@@ -43,7 +42,7 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
         </Text>
         {totalStakedBalance ? (
           <Flex height="100%" alignItems="center">
-            <Balance fontSize="16px" value={totalStakedBalance} decimals={0} unit={` ${stakingToken.symbol}`} />
+            <Balance fontSize="16px" value={totalStakedBalance} decimals={18} unit={` ${stakingToken.symbol}`} />
           </Flex>
         ) : (
           <Skeleton width="80px" height="16px" />

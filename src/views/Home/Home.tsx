@@ -6,24 +6,24 @@ import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
 import CakeStats from 'views/Home/components/CakeStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
+import RewardCard from 'views/Home/components/RewardCard'
 
 const Hero = styled.div`
   align-items: center;
-  background-image: url('/images/pan-bg-mobile.svg');
   background-repeat: no-repeat;
   background-position: top center;
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: auto;
-  margin-bottom: 32px;
-  padding-top: 116px;
+  padding-top: 80px;
+  margin-bottom: 10px;
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     background-image: url('/images/pan-bg2.svg'), url('/images/pan-bg.svg');
     background-position: left center, right center;
-    height: 190px;
+    height: 185px;
     padding-top: 0;
   }
 `
@@ -31,8 +31,8 @@ const Hero = styled.div`
 const Cards = styled(BaseLayout)`
   align-items: stretch;
   justify-content: stretch;
-  margin-bottom: 24px;
-  grid-gap: 24px;
+  margin-bottom: 10px;
+  grid-gap: 20px;
 
   & > div {
     grid-column: span 6;
@@ -50,7 +50,6 @@ const CTACards = styled(BaseLayout)`
     }
   }
 `
-
 const Home: React.FC = () => {
   const { t } = useTranslation()
 
@@ -60,14 +59,17 @@ const Home: React.FC = () => {
         <Heading as="h1" size="xl" mb="24px" >
           {t('FelicatSwap')}
         </Heading>
-        <Text>{t('The #1 AMM and yield farm on Binance Smart Chain.')}</Text>
+        <Text>{t('The popular AMM and yield farm on Binance Smart Chain.')}</Text>
       </Hero>
       <div>
         <Cards>
-          <FarmStakingCard />
+          <CTACards>
+            <FarmStakingCard />
+            <TotalValueLockedCard />
+          </CTACards>
           <CTACards>
             <CakeStats />
-            <TotalValueLockedCard />
+            <RewardCard />
           </CTACards>
         </Cards>
       </div>

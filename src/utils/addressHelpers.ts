@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @author: gaohuan
+ * @Date: 2021-07-05 23:40:05
+ * @LastEditTime: 2021-08-14 20:04:04
+ */
 import { MAINNET_CHAIN_ID } from 'config'
 import addresses from 'config/constants/contracts'
 import tokens from 'config/constants/tokens'
@@ -9,7 +15,7 @@ export const getAddress = (address: Address): string => {
 }
 
 export const getCakeAddress = () => {
-  return getAddress(tokens.cake.address)
+  return getAddress(tokens.fel.address)
 }
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
@@ -61,4 +67,7 @@ export const getPredictionsAddress = () => {
 }
 export const getChainlinkOracleAddress = () => {
   return getAddress(addresses.chainlinkOracle)
+}
+export const getRewardPoolAddress = () => {
+  return getAddress(addresses.feliCatRewardPool)
 }

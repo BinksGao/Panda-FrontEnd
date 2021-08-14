@@ -1,3 +1,9 @@
+/*
+ * @Description: 首页挖矿收益
+ * @author: gaohuan
+ * @Date: 2021-06-12 17:49:28
+ * @LastEditTime: 2021-07-31 15:44:23
+ */
 import { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import multicall from 'utils/multicall'
@@ -20,7 +26,6 @@ const useAllEarnings = () => {
       }))
 
       const res = await multicall(masterChefABI, calls)
-
       setBalance(res)
     }
 

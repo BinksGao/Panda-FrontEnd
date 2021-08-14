@@ -1,3 +1,9 @@
+/*
+ * @Description: 设置自定义的meta 包括当前的价格
+ * @author: gaohuan
+ * @Date: 2021-06-12 17:49:28
+ * @LastEditTime: 2021-07-04 19:23:08
+ */
 import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'

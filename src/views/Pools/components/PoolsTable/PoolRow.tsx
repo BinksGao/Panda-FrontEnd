@@ -37,7 +37,6 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
     fees: { performanceFee },
   } = useCakeVault()
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
-
   return (
     <>
       <StyledRow role="row" onClick={toggleExpanded}>

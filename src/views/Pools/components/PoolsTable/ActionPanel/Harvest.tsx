@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Text, useModal, Flex, TooltipText, useTooltip, Skeleton } from 'bambooswap-frontend-uikit'
+import { Button, Text, useModal, Flex, Skeleton } from 'bambooswap-frontend-uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
@@ -13,7 +13,6 @@ import { Pool } from 'state/types'
 
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
-import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
 
 interface HarvestActionProps extends Pool {
   userDataLoaded: boolean
@@ -32,7 +31,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const { account } = useWeb3React()
 
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  // These will be reassigned later if its Auto CAKE vault
+  // These will be reassigned later if its Auto FEL vault
   let earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
   let earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
   let hasEarnings = earnings.gt(0)
@@ -42,11 +41,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const isCompoundPool = sousId === 0
   const isBnbPool = poolCategory === PoolCategory.BINANCE
 
-  // Auto CAKE vault calculations
+  // Auto FEL vault calculations
   const {
     userData: { cakeAtLastUserAction, userShares },
     pricePerFullShare,
-    fees: { performanceFee },
   } = useCakeVault()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
@@ -73,14 +71,9 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
     />,
   )
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('Subtracted automatically from each yield harvest and burned.'),
-    { placement: 'bottom-start' },
-  )
-
   const actionTitle = isAutoVault ? (
     <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-      {t('Recent CAKE profit')}
+      {t('Recent FEL profit')}
     </Text>
   ) : (
     <>
@@ -140,8 +133,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
         </Flex>
         {isAutoVault ? (
           <Flex flex="1.3" flexDirection="column" alignSelf="flex-start" alignItems="flex-start">
-            <UnstakingFeeCountdownRow isTableVariant />
-            <Flex mb="2px" justifyContent="space-between" alignItems="center">
+            {/* <Flex mb="2px" justifyContent="space-between" alignItems="center">
               {tooltipVisible && tooltip}
               <TooltipText ref={targetRef} small>
                 {t('Performance Fee')}
@@ -151,7 +143,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
                   {performanceFee / 100}%
                 </Text>
               </Flex>
-            </Flex>
+            </Flex> */}
           </Flex>
         ) : (
           <Button disabled={!hasEarnings} onClick={onPresentCollect}>

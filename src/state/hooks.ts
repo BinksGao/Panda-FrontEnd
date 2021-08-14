@@ -60,7 +60,7 @@ export const usePollCoreFarmData = () => {
   const web3 = getWeb3NoAccount()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([251, 252]))
+    dispatch(fetchFarmsPublicDataAsync([1, 8]))
   }, [dispatch, fastRefresh, web3])
 }
 
@@ -84,7 +84,7 @@ export const useFarms = (): FarmsState => {
   const farms = useSelector((state: State) => state.farms)
   return farms
 }
-
+// 根据pid获取当前的
 export const useFarmFromPid = (pid): Farm => {
   const farm = useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
   return farm
@@ -325,13 +325,18 @@ export const useAchievements = () => {
   return achievements
 }
 
+export const usePriceBusd = (): BigNumber => {
+  const busdToken = useFarmFromPid(5)
+  return new BigNumber(busdToken.token.busdPrice)
+}
+
 export const usePriceBnbBusd = (): BigNumber => {
-  const bnbBusdFarm = useFarmFromPid(252)
+  const bnbBusdFarm = useFarmFromPid(8)
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(251)
+  const cakeBnbFarm = useFarmFromPid(1)
   return new BigNumber(cakeBnbFarm.token.busdPrice)
 }
 

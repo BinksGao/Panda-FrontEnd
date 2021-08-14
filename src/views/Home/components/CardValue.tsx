@@ -10,6 +10,8 @@ export interface CardValueProps {
   prefix?: string
   bold?: boolean
   color?: string
+  length?: number
+  price?: number
 }
 
 const CardValue: React.FC<CardValueProps> = ({
@@ -20,23 +22,25 @@ const CardValue: React.FC<CardValueProps> = ({
   prefix = '',
   bold = true,
   color = 'text',
+  length,
+  price
 }) => {
-  const { countUp, update } = useCountUp({
+  const { countUp,  update } = useCountUp({
     start: 0,
     end: value,
     duration: 1,
     separator: ',',
     decimals:
+      // decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e10 ? 0 : 4
       // eslint-disable-next-line no-nested-ternary
-      decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 3,
+      decimals !== undefined ? decimals : value < 0 ? (length ? 0 : 4) : value > 1e10 ? 0 : (length ? 0 : 4)
   })
-
+  
   const updateValue = useRef(update)
 
   useEffect(() => {
     updateValue.current(value)
   }, [value, updateValue])
-
   return (
     <Text bold={bold} fontSize={fontSize} style={{ lineHeight }} color={color}>
       {prefix}

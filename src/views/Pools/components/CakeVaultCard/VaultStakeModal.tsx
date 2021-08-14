@@ -1,3 +1,4 @@
+// 单币质押 确认
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon } from 'bambooswap-frontend-uikit'

@@ -35,9 +35,9 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   const { isXs, isSm } = useMatchBreakpoints()
   const { sousId, earningToken, poolCategory, userData, earningTokenPrice, isAutoVault } = pool
   const isManualCakePool = sousId === 0
-
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  // These will be reassigned later if its Auto CAKE vault
+  // These will be reassigned later if its Auto FEL vault
+  // 单币质押的用户收益
   let earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
   let earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
   let hasEarnings = account && earnings.gt(0)
@@ -46,7 +46,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   const earningsDollarValue = formatNumber(earningTokenDollarBalance)
   const isBnbPool = poolCategory === PoolCategory.BINANCE
 
-  // Auto CAKE vault calculations
+  // Auto FEL vault calculations
   const {
     userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
     pricePerFullShare,
@@ -63,11 +63,11 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   const dateTimeLastAction = new Date(lastActionInMs)
   const dateStringToDisplay = dateTimeLastAction.toLocaleString()
 
-  const labelText = isAutoVault ? t('Recent CAKE profit') : t('%asset% Earned', { asset: earningToken.symbol })
+  const labelText = isAutoVault ? t('Recent FEL Profit') : t('%asset% Earned', { asset: earningToken.symbol })
+  // 单币质押的用户收益
   earningTokenBalance = isAutoVault ? autoCakeToDisplay : earningTokenBalance
   hasEarnings = isAutoVault ? hasAutoEarnings : hasEarnings
   earningTokenDollarBalance = isAutoVault ? autoUsdToDisplay : earningTokenDollarBalance
-
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Balance fontSize="16px" value={autoCakeToDisplay} decimals={3} bold unit=" CAKE" />
@@ -94,7 +94,6 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
     event.stopPropagation()
     onPresentCollect()
   }
-
   return (
     <StyledCell role="cell">
       <CellContent>

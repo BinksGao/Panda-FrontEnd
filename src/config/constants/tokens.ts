@@ -1,7 +1,27 @@
+// 挖矿的token列表
 const tokens = {
   bnb: {
     symbol: 'BNB',
     projectLink: 'https://www.binance.com/',
+  },
+  // FEL token合约
+  fel: {
+    symbol: 'FEL',
+    address: {
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+      97: '0xDAcbED0be6d2B393277cA490941060B4dB9537D2',
+    },
+    decimals: 18,
+    projectLink: 'https://www.pandadao.finance/',
+  },
+  pdd: {
+    symbol: 'PDD',
+    address: {
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+      97: '0xE7f0994Adc50DE8ee03E13576068c74Ec5C01075',
+    },
+    decimals: 18,
+    projectLink: 'https://www.pandadao.finance/',
   },
   cake: {
     symbol: 'CAKE',
@@ -439,7 +459,7 @@ const tokens = {
     symbol: 'wBNB',
     address: {
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
-      97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
+      97: '0x6327a1f965601c336Fc02e56d5847A6e83826352',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
@@ -583,7 +603,7 @@ const tokens = {
     symbol: 'SYRUP',
     address: {
       56: '0x009cF7bC57584b7998236eff51b98A168DceA9B0',
-      97: '0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9',
+      97: '0x96009904255273e6B923cF1A9Ef50236ce09A3f2v',
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
@@ -610,7 +630,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
-      97: '',
+      97: '0x75e68Ce04E1f18B669b57cEC692ff670DFA1A685',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
@@ -682,7 +702,7 @@ const tokens = {
     symbol: 'USDC',
     address: {
       56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
-      97: '',
+      97: '0x9318b6d53641C4896Ce0d8Ce3f4b852bE437A1ef',
     },
     decimals: 18,
     projectLink: 'https://www.centre.io/usdc',
@@ -744,7 +764,7 @@ const tokens = {
   usdt: {
     symbol: 'USDT',
     address: {
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
+      97: '0x45fb33231D7bD7AD220F90898FE36A8Fc24B37Dd',
       56: '0x55d398326f99059ff775485246999027b3197955',
     },
     decimals: 18,

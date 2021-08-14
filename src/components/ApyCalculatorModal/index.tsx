@@ -75,7 +75,6 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     compoundFrequency,
     performanceFee,
   })
-
   return (
     <Modal title={t('ROI')} onDismiss={onDismiss}>
       <Grid>

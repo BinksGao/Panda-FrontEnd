@@ -18,17 +18,16 @@ const Apr: React.FC<AprProps> = ({ pool, showIcon, performanceFee = 0, ...props 
   const { t } = useTranslation()
 
   const { apr: earningsPercentageToDisplay, roundingDecimals, compoundFrequency } = getAprData(pool, performanceFee)
-
   const apyModalLink =
     stakingToken.address &&
     `${BASE_EXCHANGE_URL}/#/swap?outputCurrency=${stakingToken.address[process.env.REACT_APP_CHAIN_ID]}`
-
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
       tokenPrice={earningTokenPrice}
       apr={apr}
       linkLabel={t('Get %symbol%', { symbol: stakingToken.symbol })}
-      linkHref={apyModalLink || BASE_EXCHANGE_URL}
+      // linkHref={apyModalLink || BASE_EXCHANGE_URL}
+      linkHref={apyModalLink}
       earningTokenSymbol={earningToken.symbol}
       roundingDecimals={roundingDecimals}
       compoundFrequency={compoundFrequency}

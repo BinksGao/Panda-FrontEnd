@@ -1,3 +1,10 @@
+/*
+ * @Description: 价格工具类
+ * @author: gaohuan
+ * @Date: 2021-06-12 17:49:28
+ * @LastEditTime: 2021-07-06 21:36:38
+ */
+
 import tokens from './tokens'
 import { FarmConfig } from './types'
 
@@ -11,12 +18,12 @@ const priceHelperLps: FarmConfig[] = [
    */
   {
     pid: null,
-    lpSymbol: 'QSD-BNB LP',
+    lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
-      97: '',
+      97: '0xb9C0997E4CC280374d70aFA5e785639a0C1a636E',
       56: '0x7b3ae32eE8C532016f3E31C8941D937c59e055B9',
     },
-    token: tokens.qsd,
+    token: tokens.busd,
     quoteToken: tokens.wbnb,
   },
 ]

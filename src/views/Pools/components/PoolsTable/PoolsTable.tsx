@@ -45,7 +45,9 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
   return (
     <StyledTableBorder>
       <StyledTable role="table" ref={tableWrapperEl}>
-        {pools.map((pool) => (
+        {/* 去掉自动挖矿 */}
+        {pools.filter((pool) => pool.isAutoVault !==true).map((pool) => (
+          // {pools.map((pool) => (
           <PoolRow
             key={pool.isAutoVault ? 'auto-cake' : pool.sousId}
             pool={pool}

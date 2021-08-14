@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @author: gaohuan
+ * @Date: 2021-06-12 17:49:28
+ * @LastEditTime: 2021-08-08 17:11:26
+ */
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
@@ -35,7 +41,6 @@ const useFarmsWithBalance = () => {
       fetchBalances()
     }
   }, [account, fastRefresh])
-
   return farmsWithBalances
 }
 

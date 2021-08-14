@@ -1,7 +1,7 @@
 import React from 'react'
 import { Menu as UikitMenu } from 'bambooswap-frontend-uikit'
 import { useWeb3React } from '@web3-react/core'
-import { languageList } from 'config/localization/languages'
+// import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useAuth from 'hooks/useAuth'
@@ -14,7 +14,8 @@ const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
   const cakePriceUsd = usePriceCakeBusd()
   const { profile } = useProfile()
-  const { currentLanguage, setLanguage, t } = useTranslation()
+  // const { currentLanguage, t } = useTranslation()
+  const { t } = useTranslation()
   return (
     <UikitMenu
       account={account}
@@ -22,9 +23,6 @@ const Menu = (props) => {
       logout={logout}
       isDark={isDark}
       toggleTheme={toggleTheme}
-      currentLang={currentLanguage.code}
-      langs={languageList}
-      setLang={setLanguage}
       cakePriceUsd={cakePriceUsd.toNumber()}
       links={config(t)}
       profile={{
@@ -40,3 +38,6 @@ const Menu = (props) => {
 }
 
 export default Menu
+
+// "bambooswap-libs-uikit": "0.0.16",
+// "bambooswap-sdk": "0.0.12",

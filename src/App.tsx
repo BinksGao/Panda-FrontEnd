@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from 'bambooswap-frontend-uikit'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
@@ -23,7 +23,7 @@ const NotFound = lazy(() => import('./views/NotFound'))
 // const Collectibles = lazy(() => import('./views/Collectibles'))
 // const Teams = lazy(() => import('./views/Teams'))
 // const Team = lazy(() => import('./views/Teams/Team'))
-// const Profile = lazy(() => import('./views/Profile'))
+const Profile = lazy(() => import('./views/Profile'))
 // const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
 // const Predictions = lazy(() => import('./views/Predictions'))
 
@@ -70,10 +70,10 @@ const App: React.FC = () => {
             <Route path="/teams/:id">
               <Team />
             </Route> */}
-            {/* <Route path="/profile">
+            <Route path="/profile">
               <Profile />
             </Route>
-            <Route path="/competition">
+            {/* <Route path="/competition">
               <TradingCompetition />
             </Route>
             <Route path="/prediction">

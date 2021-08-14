@@ -11,7 +11,7 @@ import CardValue from './CardValue'
 import CardBusdValue from './CardBusdValue'
 
 const Block = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 15px;
 `
 
 const CakeHarvestBalance = () => {
@@ -19,7 +19,7 @@ const CakeHarvestBalance = () => {
   const { account } = useWeb3React()
   const allEarnings = useAllEarnings()
   const earningsSum = allEarnings.reduce((accum, earning) => {
-    const earningNumber = new BigNumber(earning)
+    const earningNumber = new BigNumber(earning[0]._hex)
     if (earningNumber.eq(0)) {
       return accum
     }
@@ -27,7 +27,6 @@ const CakeHarvestBalance = () => {
   }, 0)
   const cakePriceBusd = usePriceCakeBusd()
   const earningsBusd = new BigNumber(earningsSum).multipliedBy(cakePriceBusd).toNumber()
-
   if (!account) {
     return (
       <Text color="textDisabled" style={{ lineHeight: '76px' }}>
@@ -38,7 +37,7 @@ const CakeHarvestBalance = () => {
 
   return (
     <Block>
-      <CardValue value={earningsSum} lineHeight="1.5" />
+      <CardValue value={earningsSum} fontSize="24px" lineHeight="1.5" />
       {cakePriceBusd.gt(0) && <CardBusdValue value={earningsBusd} />}
     </Block>
   )

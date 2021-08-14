@@ -13,11 +13,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: t('Exchange'),
-        href: 'https://testnet.pandadao.finance//#/swap',
+        href: 'https://testnet_exchange.pandadao.finance/#/swap',
       },
       {
         label: t('Liquidity'),
-        href: 'https://testnet.pandadao.finance//#/pool',
+        href: 'https://testnet_exchange.pandadao.finance/#/pool',
       }
     ],
   },

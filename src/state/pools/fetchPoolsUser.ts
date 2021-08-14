@@ -1,3 +1,4 @@
+// 单币质押的 用户数据
 import { AbiItem } from 'web3-utils'
 import poolsConfig from 'config/constants/pools'
 import masterChefABI from 'config/abi/masterchef.json'
@@ -49,7 +50,6 @@ export const fetchUserBalances = async (account) => {
     (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(bnbBalance).toJSON() }),
     {},
   )
-
   return { ...tokenBalances, ...bnbBalances }
 }
 
@@ -67,10 +67,7 @@ export const fetchUserStakeBalances = async (account) => {
     }),
     {},
   )
-
-  // Cake / Cake pool
   const { amount: masterPoolAmount } = await masterChefContract.methods.userInfo('0', account).call()
-
   return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON() }
 }
 
@@ -88,9 +85,7 @@ export const fetchUserPendingRewards = async (account) => {
     }),
     {},
   )
-
-  // Cake / Cake pool
   const pendingReward = await masterChefContract.methods.pendingCake('0', account).call()
-
-  return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }
+  return { ...pendingRewards, 0: new BigNumber(pendingReward[0]).toJSON() }
 }
+

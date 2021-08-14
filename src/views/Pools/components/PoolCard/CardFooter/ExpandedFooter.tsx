@@ -5,13 +5,10 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import {
   Flex,
-  MetamaskIcon,
   Text,
-  TooltipText,
   LinkExternal,
   TimerIcon,
   Skeleton,
-  useTooltip,
   Button,
 } from 'bambooswap-frontend-uikit'
 import { BASE_BSC_SCAN_URL, BASE_URL } from 'config'
@@ -39,7 +36,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const { currentBlock } = useBlock()
   const {
     totalCakeInVault,
-    fees: { performanceFee },
   } = useCakeVault()
 
   const { stakingToken, earningToken, totalStaked, contractAddress, sousId, isAutoVault } = pool
@@ -54,10 +50,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
     getPoolBlockInfo(pool, currentBlock)
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('Subtracted automatically from each yield harvest and burned.'),
-    { placement: 'bottom-start' },
-  )
 
   const getTotalStakedBalance = () => {
     if (isAutoVault) {
@@ -103,7 +95,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           </Flex>
         </Flex>
       )}
-      {isAutoVault && (
+      {/* {isAutoVault && (
         <Flex mb="2px" justifyContent="space-between" alignItems="center">
           {tooltipVisible && tooltip}
           <TooltipText ref={targetRef} small>
@@ -115,7 +107,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
             </Text>
           </Flex>
         </Flex>
-      )}
+      )} */}
       <Flex mb="2px" justifyContent="flex-end">
         <LinkExternal bold={false} small href={earningToken.projectLink}>
           {t('View Project Site')}
@@ -140,10 +132,10 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
             height="auto"
             onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals, imageSrc)}
           >
-            <Text color="primary" fontSize="14px">
+            {/* <Text color="primary" fontSize="14px">
               {t('Add to Metamask')}
             </Text>
-            <MetamaskIcon ml="4px" />
+            <MetamaskIcon ml="4px" /> */}
           </Button>
         </Flex>
       )}

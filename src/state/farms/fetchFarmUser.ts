@@ -36,7 +36,7 @@ export const fetchFarmUserTokenBalances = async (account: string, farmsToFetch: 
   })
   return parsedTokenBalances
 }
-
+// 用户质押挖矿的锁仓量
 export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch: FarmConfig[]) => {
   const masterChefAddress = getMasterChefAddress()
 
@@ -54,10 +54,9 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
   })
   return parsedStakedBalances
 }
-
+// 获取用户质押挖矿的收益
 export const fetchFarmUserEarnings = async (account: string, farmsToFetch: FarmConfig[]) => {
   const masterChefAddress = getMasterChefAddress()
-
   const calls = farmsToFetch.map((farm) => {
     return {
       address: masterChefAddress,
@@ -68,7 +67,7 @@ export const fetchFarmUserEarnings = async (account: string, farmsToFetch: FarmC
 
   const rawEarnings = await multicall(masterchefABI, calls)
   const parsedEarnings = rawEarnings.map((earnings) => {
-    return new BigNumber(earnings).toJSON()
+    return new BigNumber(earnings[0]._hex).toJSON()
   })
   return parsedEarnings
 }

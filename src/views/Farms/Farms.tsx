@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text } from 'bambooswap-frontend-uikit'
+import { Heading, RowType, Toggle, Text } from 'bambooswap-frontend-uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -91,12 +91,6 @@ const ViewControls = styled.div`
     }
   }
 `
-
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
-`
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
@@ -127,6 +121,8 @@ const Farms: React.FC = () => {
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  // const activeFarms = farmsLP.filter((farm) => farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
+  // const inactiveFarms = farmsLP.filter((farm) => farm.multiplier === '0X' && !isArchivedPid(farm.pid))
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -172,10 +168,9 @@ const Farms: React.FC = () => {
 
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
-
   const farmsStakedMemoized = useMemo(() => {
     let farmsStaked = []
-
+ 
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'apr':
@@ -198,7 +193,6 @@ const Farms: React.FC = () => {
           return farms
       }
     }
-
     if (isActive) {
       farmsStaked = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
     }
@@ -208,7 +202,6 @@ const Farms: React.FC = () => {
     if (isArchived) {
       farmsStaked = stakedOnly ? farmsList(stakedArchivedFarms) : farmsList(archivedFarms)
     }
-
     return sortFarms(farmsStaked).slice(0, numberOfFarmsVisible)
   }, [
     sortOption,
@@ -243,7 +236,6 @@ const Farms: React.FC = () => {
       setObserverIsSet(true)
     }
   }, [farmsStakedMemoized, observerIsSet])
-
   const rowData = farmsStakedMemoized.map((farm) => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
@@ -277,7 +269,6 @@ const Farms: React.FC = () => {
       },
       details: farm,
     }
-
     return row
   })
 
@@ -307,7 +298,6 @@ const Farms: React.FC = () => {
         },
         sortable: column.sortable,
       }))
-
       return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
     }
 
@@ -393,9 +383,11 @@ const Farms: React.FC = () => {
             </LabelWrapper>
           </FilterContainer>
         </ControlContainer>
+        {/* 流动性挖矿列表 */}
         {renderContent()}
         <div ref={loadMoreRef} />
-        <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} />
+        {/* farm主页加载动画 */}
+        {/* <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} /> */}
       </Page>
     </>
   )

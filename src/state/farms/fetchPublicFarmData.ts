@@ -76,7 +76,8 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
 
   // Only make masterchef calls if farm has pid
   const [info, totalAllocPoint] =
-    pid || pid === 0
+    // pid || pid === 0
+    pid
       ? await multicall(masterchefABI, [
           {
             address: getMasterChefAddress(),
