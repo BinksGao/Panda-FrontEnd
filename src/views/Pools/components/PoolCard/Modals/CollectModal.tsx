@@ -6,11 +6,7 @@ import {
   Button,
   Heading,
   Flex,
-  AutoRenewIcon,
-  ButtonMenu,
-  ButtonMenuItem,
-  HelpIcon,
-  useTooltip,
+  AutoRenewIcon
 } from 'bambooswap-frontend-uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
@@ -46,13 +42,13 @@ const CollectModal: React.FC<CollectModalProps> = ({
   const { onReward } = useSousHarvest(sousId, isBnbPool)
   const { onStake } = useSousStake(sousId, isBnbPool)
   const [pendingTx, setPendingTx] = useState(false)
-  const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    <>
-      <Text>{t('Harvest: collect FEL and send to wallet')}</Text>
-    </>,
-    { placement: 'bottom-end', tooltipOffset: [20, 10] },
-  )
+  const [shouldCompound] = useState(isCompoundPool)
+  // const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  //   <>
+  //     <Text>{t('Harvest: collect FEL and send to wallet')}</Text>
+  //   </>,
+  //   { placement: 'bottom-end', tooltipOffset: [20, 10] },
+  // )
   const handleHarvestConfirm = async () => {
     setPendingTx(true)
     // compounding
@@ -93,7 +89,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
-      {isCompoundPool && (
+      {/* {isCompoundPool && (
         <Flex justifyContent="center" alignItems="center" mb="24px">
           <ButtonMenu
             activeIndex={shouldCompound ? 0 : 1}
@@ -101,7 +97,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
             variant="subtle"
             onItemClick={(index) => setShouldCompound(!index)}
           >
-            {/* <ButtonMenuItem as="button">{t('Compound')}</ButtonMenuItem> */}
+            <ButtonMenuItem as="button">{t('Compound')}</ButtonMenuItem>
             <ButtonMenuItem as="button">{t('Harvest')}</ButtonMenuItem>
             <></>
           </ButtonMenu>
@@ -110,7 +106,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
           </Flex>
           {tooltipVisible && tooltip}
         </Flex>
-      )}
+      )} */}
 
       <Flex justifyContent="space-between" alignItems="center" mb="24px">
         <Text>{t('Harvesting')}:</Text>

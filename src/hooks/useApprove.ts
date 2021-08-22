@@ -55,7 +55,7 @@ export const useSousApprove = (lpContract: Contract, sousId, earningTokenSymbol)
       }
     } catch (e) {
       console.error(e)
-      toastError(t('Error'), e?.message)
+      toastError(t('Error'), e)
     }
   }, [account, dispatch, lpContract, sousChefContract, sousId, earningTokenSymbol, t, toastError, toastSuccess])
 

@@ -89,3 +89,21 @@ export const fetchUserPendingRewards = async (account) => {
   return { ...pendingRewards, 0: new BigNumber(pendingReward[0]).toJSON() }
 }
 
+export const fetchUserPendingLocked = async (account) => {
+  const calls = nonMasterPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'pendingReward',
+    params: [account],
+  }))
+  const res = await multicall(sousChefABI, calls)
+  const pendingRewards = nonMasterPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(res[index]).toJSON(),
+    }),
+    {},
+  )
+  const pendingReward = await masterChefContract.methods.pendingCake('0', account).call()
+  return { ...pendingRewards, 0: new BigNumber(pendingReward[1]).toJSON() }
+}
+

@@ -87,7 +87,7 @@ const CardsWrapper = styled.div<{ singleCard: boolean }>`
 const StyledCardBody = styled(CardBody)`
   padding: 24px 16px;
   ${({ theme }) => theme.mediaQueries.md} {
-    padding: 24px;
+    padding: 20px;
   }
 `
 

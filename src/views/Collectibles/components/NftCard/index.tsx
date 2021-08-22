@@ -48,7 +48,7 @@ const DetailsButton = styled(Button).attrs({ variant: 'text' })`
 `
 
 const InfoBlock = styled.div`
-  padding: 24px;
+  padding: 20px;
 `
 
 const NftCard: React.FC<NftCardProps> = ({ nft, canClaim = false, tokenIds = [], onClaim, refresh }) => {

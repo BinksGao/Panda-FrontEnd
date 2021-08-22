@@ -17,7 +17,7 @@ interface BetDetailsProps {
 const StyledBetDetails = styled.div`
   background-color: ${({ theme }) => theme.colors.dropdown};
   border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
-  padding: 24px;
+  padding: 20px;
 `
 
 const BetDetails: React.FC<BetDetailsProps> = ({ bet, result }) => {

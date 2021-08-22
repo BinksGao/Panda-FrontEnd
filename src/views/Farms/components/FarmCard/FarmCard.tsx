@@ -52,7 +52,7 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 24px;
+  padding: 20px;
   position: relative;
   text-align: center;
 `

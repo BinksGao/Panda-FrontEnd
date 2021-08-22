@@ -71,3 +71,21 @@ export const fetchFarmUserEarnings = async (account: string, farmsToFetch: FarmC
   })
   return parsedEarnings
 }
+
+// 获取用户质押挖矿的锁仓
+export const fetchFarmUserLockedEarnings = async (account: string, farmsToFetch: FarmConfig[]) => {
+  const masterChefAddress = getMasterChefAddress()
+  const calls = farmsToFetch.map((farm) => {
+    return {
+      address: masterChefAddress,
+      name: 'pendingCake',
+      params: [farm.pid, account],
+    }
+  })
+
+  const rawEarnings = await multicall(masterchefABI, calls)
+  const parsedEarnings = rawEarnings.map((earnings) => {
+    return new BigNumber(earnings[1]._hex).toJSON()
+  })
+  return parsedEarnings
+}

@@ -32,7 +32,7 @@ const Body = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 24px;
+  padding: 20px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     align-items: center;

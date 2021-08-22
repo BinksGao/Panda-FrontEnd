@@ -15,15 +15,15 @@ const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/bamboo-bg.svg');
   background-repeat: no-repeat;
   background-position: top right;
-  min-height: 500px;
+  min-height: 450px;
 `
 
 const Block = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 `
 
 const CardImage = styled.img`
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 `
 
 const Label = styled.div`
@@ -32,7 +32,7 @@ const Label = styled.div`
 `
 
 const Actions = styled.div`
-  margin-top: 30px;
+  margin-top: 15px;
 `
 
 const FarmedStakingCard = () => {
@@ -42,7 +42,6 @@ const FarmedStakingCard = () => {
   const farmsWithBalance = useFarmsWithBalance()
   const masterChefContract = useMasterchef()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
-
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
     // eslint-disable-next-line no-restricted-syntax

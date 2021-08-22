@@ -25,6 +25,7 @@ import { registerToken } from 'utils/wallet'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { getPoolBlockInfo } from 'views/Pools/helpers'
 import Harvest from './Harvest'
+import Locked from './Locked'
 import Stake from './Stake'
 import Apr from '../Apr'
 
@@ -254,6 +255,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`}
           </Text>
         )}
+        <Locked {...pool} userDataLoaded={userDataLoaded} />
         <Harvest {...pool} userDataLoaded={userDataLoaded} />
         <Stake pool={pool} userDataLoaded={userDataLoaded} />
       </ActionContainer>

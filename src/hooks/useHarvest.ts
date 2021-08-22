@@ -16,6 +16,17 @@ export const useHarvest = (farmPid: number) => {
 
   return { onReward: handleHarvest }
 }
+export const SubmitHarvest = (farmPid: number) => {
+  const { account } = useWeb3React()
+  const masterChefContract = useMasterchef()
+
+  const handleHarvest = useCallback(async () => {
+    const txHash = await harvest(masterChefContract, farmPid, account)
+    return txHash
+  }, [account, farmPid, masterChefContract])
+
+  return { onReward: handleHarvest }
+}
 
 export const useSousHarvest = (sousId, isUsingBnb = false) => {
   const dispatch = useAppDispatch()

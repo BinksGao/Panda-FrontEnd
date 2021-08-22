@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
+import React, { useEffect, useCallback, useState, useMemo } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
@@ -121,8 +121,6 @@ const Farms: React.FC = () => {
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
-  // const activeFarms = farmsLP.filter((farm) => farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
-  // const inactiveFarms = farmsLP.filter((farm) => farm.multiplier === '0X' && !isArchivedPid(farm.pid))
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -164,10 +162,9 @@ const Farms: React.FC = () => {
     setQuery(event.target.value)
   }
 
-  const loadMoreRef = useRef<HTMLDivElement>(null)
+  // const loadMoreRef = useRef<HTMLDivElement>(null)
 
-  const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
-  const [observerIsSet, setObserverIsSet] = useState(false)
+  const [numberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const farmsStakedMemoized = useMemo(() => {
     let farmsStaked = []
  
@@ -219,29 +216,11 @@ const Farms: React.FC = () => {
     numberOfFarmsVisible,
   ])
 
-  useEffect(() => {
-    const showMoreFarms = (entries) => {
-      const [entry] = entries
-      if (entry.isIntersecting) {
-        setNumberOfFarmsVisible((farmsCurrentlyVisible) => farmsCurrentlyVisible + NUMBER_OF_FARMS_VISIBLE)
-      }
-    }
-
-    if (!observerIsSet) {
-      const loadMoreObserver = new IntersectionObserver(showMoreFarms, {
-        rootMargin: '0px',
-        threshold: 1,
-      })
-      loadMoreObserver.observe(loadMoreRef.current)
-      setObserverIsSet(true)
-    }
-  }, [farmsStakedMemoized, observerIsSet])
   const rowData = farmsStakedMemoized.map((farm) => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
     const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
-
     const row: RowProps = {
       apr: {
         value: farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 }),
@@ -267,7 +246,7 @@ const Farms: React.FC = () => {
       multiplier: {
         multiplier: farm.multiplier,
       },
-      details: farm,
+      details: farm
     }
     return row
   })
@@ -385,9 +364,7 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {/* 流动性挖矿列表 */}
         {renderContent()}
-        <div ref={loadMoreRef} />
-        {/* farm主页加载动画 */}
-        {/* <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} /> */}
+        {/* <div ref={loadMoreRef} /> */}
       </Page>
     </>
   )

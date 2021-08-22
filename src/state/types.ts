@@ -30,6 +30,7 @@ export interface Farm extends FarmConfig {
     tokenBalance: string
     stakedBalance: string
     earnings: string
+    locked: string
   }
 }
 
@@ -47,6 +48,7 @@ export interface Pool extends PoolConfig {
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    pendingLocked: BigNumber
   }
 }
 

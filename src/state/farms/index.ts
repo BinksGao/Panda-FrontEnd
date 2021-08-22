@@ -10,6 +10,7 @@ import {
   fetchFarmUserAllowances,
   fetchFarmUserTokenBalances,
   fetchFarmUserStakedBalances,
+  fetchFarmUserLockedEarnings
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
 
@@ -20,6 +21,7 @@ const noAccountFarmConfig = farmsConfig.map((farm) => ({
     tokenBalance: '0',
     stakedBalance: '0',
     earnings: '0',
+    locked: '0'
   },
 }))
 
@@ -55,6 +57,7 @@ interface FarmUserDataResponse {
   tokenBalance: string
   stakedBalance: string
   earnings: string
+  locked: string
 }
 
 export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], { account: string; pids: number[] }>(
@@ -65,7 +68,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsToFetch)
     const userStakedBalances = await fetchFarmUserStakedBalances(account, farmsToFetch)
     const userFarmEarnings = await fetchFarmUserEarnings(account, farmsToFetch)
-
+    const userFarmLocked = await fetchFarmUserLockedEarnings(account, farmsToFetch)
     return userFarmAllowances.map((farmAllowance, index) => {
       return {
         pid: farmsToFetch[index].pid,
@@ -73,11 +76,11 @@ export const fetchFarmUserDataAsync = createAsyncThunk<FarmUserDataResponse[], {
         tokenBalance: userFarmTokenBalances[index],
         stakedBalance: userStakedBalances[index],
         earnings: userFarmEarnings[index],
+        locked: userFarmLocked[index]
       }
     })
   },
 )
-
 export const farmsSlice = createSlice({
   name: 'Farms',
   initialState,

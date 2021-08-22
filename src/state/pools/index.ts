@@ -13,6 +13,7 @@ import {
   fetchUserBalances,
   fetchUserStakeBalances,
   fetchUserPendingRewards,
+  fetchUserPendingLocked
 } from './fetchPoolsUser'
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import fetchVaultUser from './fetchVaultUser'
@@ -111,15 +112,15 @@ export const fetchPoolsUserDataAsync =
     const stakingTokenBalances = await fetchUserBalances(account)
     const stakedBalances = await fetchUserStakeBalances(account)
     const pendingRewards = await fetchUserPendingRewards(account)
-
+    const pendingLocked = await fetchUserPendingLocked(account)
     const userData = poolsConfig.map((pool) => ({
       sousId: pool.sousId,
       allowance: allowances[pool.sousId],
       stakingTokenBalance: stakingTokenBalances[pool.sousId],
       stakedBalance: stakedBalances[pool.sousId],
       pendingReward: pendingRewards[pool.sousId],
+      pendingLocked: pendingLocked[pool.sousId]
     }))
-
     dispatch(setPoolsUserData(userData))
   }
 
@@ -136,7 +137,12 @@ export const updateUserBalance =
     const tokenBalances = await fetchUserBalances(account)
     dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
   }
-
+export const updateUserLocked =
+  (sousId: number, account: string): AppThunk =>
+  async (dispatch) => {
+    const tokenLocked = await fetchUserPendingLocked(account)
+    dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenLocked', value: tokenLocked[sousId] }))
+  }
 export const updateUserStakedBalance =
   (sousId: number, account: string): AppThunk =>
   async (dispatch) => {

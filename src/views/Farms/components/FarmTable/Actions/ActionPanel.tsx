@@ -8,6 +8,8 @@ import { getBscScanAddressUrl } from 'utils/bscscan'
 import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
 
 import HarvestAction from './HarvestAction'
+import LockedAction from './LockedAction'
+
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
@@ -54,7 +56,7 @@ const Container = styled.div<{ expanded }>`
   display: flex;
   width: 100%;
   flex-direction: column-reverse;
-  padding: 24px;
+  padding: 20px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: row;
@@ -182,6 +184,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         </ValueWrapper>
       </ValueContainer>
       <ActionContainer>
+        <LockedAction {...farm} userDataReady={userDataReady} />
         <HarvestAction {...farm} userDataReady={userDataReady} />
         <StakedAction {...farm} userDataReady={userDataReady} />
       </ActionContainer>

@@ -220,22 +220,8 @@ export const useCurrentUserVolumePower = () => {
   return pendingReward
 }
 
-export const useWithdrawReward = () => {
-  const { slowRefresh } = useRefresh()
-  const [pendingReward, setLastBlock] = useState<BigNumber>()
-  const web3React = useWeb3()
-  const { account } = useWeb3React()
-
-  useEffect(() => {
-    async function fetchWithdrawReward() {
-      // const rewardPoolContract = getRewardPool()
-      const rewardPoolContract = new web3.eth.Contract(rewardPoolAbi as unknown as AbiItem, getRewardPoolAddress())
-      const reward = await rewardPoolContract.methods.withdrawReward(account).call()
-      setLastBlock(new BigNumber(reward))
-    }
-    fetchWithdrawReward()
-  }, [account, web3React, slowRefresh])
-  return pendingReward
+export const withdrawReward = async (account) => {
+  const rewardPoolContract = new web3.eth.Contract(rewardPoolAbi as unknown as AbiItem, getRewardPoolAddress())
+  return rewardPoolContract.methods.withdrawReward(account).call()
 }
-
 export default useTokenBalance

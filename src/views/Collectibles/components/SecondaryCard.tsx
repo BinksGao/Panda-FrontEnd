@@ -6,7 +6,7 @@ const SecondaryCard = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.textDisabled};
   border-radius: 32px;
   display: flex;
-  padding: 24px;
+  padding: 20px;
 `
 
 export default SecondaryCard

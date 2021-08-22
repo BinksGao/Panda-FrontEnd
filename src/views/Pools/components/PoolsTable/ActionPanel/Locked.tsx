@@ -1,10 +1,9 @@
 import React from 'react'
-import { Button, Text, useModal, Flex, Skeleton } from 'bambooswap-frontend-uikit'
+import { Text, Flex } from 'bambooswap-frontend-uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
-import { PoolCategory } from 'config/constants/types'
-import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import { useCakeVault } from 'state/hooks'
@@ -12,34 +11,24 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { Pool } from 'state/types'
 
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
-import CollectModal from '../../PoolCard/Modals/CollectModal'
 
-interface HarvestActionProps extends Pool {
+interface LockedActionProps extends Pool {
   userDataLoaded: boolean
 }
 
-const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
-  sousId,
-  poolCategory,
+const LockedAction: React.FunctionComponent<LockedActionProps> = ({
   earningToken,
   userData,
-  userDataLoaded,
   isAutoVault,
   earningTokenPrice,
 }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-
-  const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
+  const locked = userData?.pendingLocked ? new BigNumber(userData.pendingLocked) : BIG_ZERO
   // These will be reassigned later if its Auto FEL vault
-  let earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
-  let earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
-  let hasEarnings = earnings.gt(0)
-  const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
-  const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
-  const earningsDollarValue = formatNumber(earningTokenDollarBalance)
-  const isCompoundPool = sousId === 0
-  const isBnbPool = poolCategory === PoolCategory.BINANCE
+  let earningTokenBalance = getBalanceNumber(locked, earningToken.decimals)
+  let earningTokenDollarBalance = getBalanceNumber(locked.multipliedBy(earningTokenPrice), earningToken.decimals)
+  let hasEarnings = locked.gt(0)
 
   // Auto FEL vault calculations
   const {
@@ -59,21 +48,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   earningTokenDollarBalance = isAutoVault ? autoUsdToDisplay : earningTokenDollarBalance
 
   const displayBalance = hasEarnings ? earningTokenBalance : 0
-  const [onPresentCollect] = useModal(
-    <CollectModal
-      formattedBalance={formattedBalance}
-      fullBalance={fullBalance}
-      earningToken={earningToken}
-      earningsDollarValue={earningsDollarValue}
-      sousId={sousId}
-      isBnbPool={isBnbPool}
-      isCompoundPool={isCompoundPool}
-    />,
-  )
 
   const actionTitle = isAutoVault ? (
     <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-      {t('Recent FEL profit')}
+      {t('Recent FEL Locked')}
     </Text>
   ) : (
     <>
@@ -81,33 +59,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
         {earningToken.symbol}{' '}
       </Text>
       <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
-        {t('Earned')}
+        {t('Locked')}
       </Text>
     </>
   )
-
-  if (!account) {
-    return (
-      <ActionContainer>
-        <ActionTitles>{actionTitle}</ActionTitles>
-        <ActionContent>
-          <Balance pt="8px" lineHeight="1" bold fontSize="20px" decimals={5} value={0} />
-          <Button disabled>{isCompoundPool ? t('Collect') : t('Harvest')}</Button>
-        </ActionContent>
-      </ActionContainer>
-    )
-  }
-
-  if (!userDataLoaded) {
-    return (
-      <ActionContainer>
-        <ActionTitles>{actionTitle}</ActionTitles>
-        <ActionContent>
-          <Skeleton width={180} height="32px" marginTop={14} />
-        </ActionContent>
-      </ActionContainer>
-    )
-  }
 
   return (
     <ActionContainer>
@@ -131,18 +86,9 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Text>
           )}
         </Flex>
-        {isAutoVault ? (
-          <Flex flex="1.3" flexDirection="column" alignSelf="flex-start" alignItems="flex-start">
-            <div> </div>
-          </Flex>
-        ) : (
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
-            {isCompoundPool ? t('Collect') : t('Harvest')}
-          </Button>
-        )}
       </ActionContent>
     </ActionContainer>
   )
 }
 
-export default HarvestAction
+export default LockedAction

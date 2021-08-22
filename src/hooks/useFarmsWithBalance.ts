@@ -1,9 +1,3 @@
-/*
- * @Description: 
- * @author: gaohuan
- * @Date: 2021-06-12 17:49:28
- * @LastEditTime: 2021-08-08 17:11:26
- */
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
@@ -32,8 +26,7 @@ const useFarmsWithBalance = () => {
       }))
 
       const rawResults = await multicall(masterChefABI, calls)
-      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
-
+      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index][0]._hex) }))
       setFarmsWithBalances(results)
     }
 
